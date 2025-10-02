@@ -40,9 +40,8 @@ describe('FeedbackComponent', () => {
   });
 
   it('cancel navigates to homepage', () => {
-    console.log('qwerty123456');
-    //component.cancel();
+    component.cancel();
 
-    //expect(routerSpy).toHaveBeenCalledWith(['home']);
+    expect(routerSpy).toHaveBeenCalledWith(['home']);
   });
 });
