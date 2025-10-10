@@ -4,6 +4,7 @@ import { provideRouter, Router } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
 import { FeedbackComponent } from './feedback.component';
 import { HomeComponent } from '../home/home.component';
+import { FormControl, Validators } from '@angular/forms';
 //import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('FeedbackComponent', () => {
@@ -43,5 +44,72 @@ describe('FeedbackComponent', () => {
     component.cancel();
 
     expect(routerSpy).toHaveBeenCalledWith(['home']);
+  });
+
+  it('should mark name as invalid when it contains special characters', () => {
+    // Arrange: Create a form control with a validation pattern
+    const nameControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
+    ]);
+
+    nameControl.setValue('John@Doe');
+
+    expect(nameControl.invalid).toBeTrue();
+    expect(nameControl.errors?.['pattern']).toBeTruthy();
+  });
+
+  it('should mark name as valid when it has value', () => {
+    // Arrange: Create a form control with the same validation rule
+    const nameControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
+    ]);
+
+    nameControl.setValue('John Doe');
+
+    expect(nameControl.valid).toBeTrue();
+    expect(nameControl.errors).toBeNull();
+  });
+
+  it('should mark name as invalid when it has no value', () => {
+    // Arrange: Create a form control with required + pattern validators
+    const nameControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
+    ]);
+
+    nameControl.setValue('');
+
+    expect(nameControl.invalid).toBeTrue();
+    expect(nameControl.errors?.['required']).toBeTruthy();
+  });
+
+  it('should mark name as invalid when it only has one character', () => {
+    // Arrange: Create a form control with validation rules
+    const nameControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only alphanumeric and spaces
+      Validators.minLength(2)                // Must be at least 2 characters long
+    ]);
+
+    nameControl.setValue('A');
+
+    expect(nameControl.invalid).toBeTrue();
+    expect(nameControl.errors?.['minlength']).toBeTruthy();
+  });
+
+  it('should mark name as valid when it has two characters', () => {
+    // Arrange: Create a form control with the same validation rules
+    const nameControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only alphanumeric and spaces
+      Validators.minLength(2)                // Must be at least 2 characters
+    ]);
+
+    nameControl.setValue('Al');
+
+    expect(nameControl.valid).toBeTrue();
+    expect(nameControl.errors).toBeNull();
   });
 });
