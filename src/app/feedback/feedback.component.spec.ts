@@ -47,7 +47,6 @@ describe('FeedbackComponent', () => {
   });
 
   it('should mark name as invalid when it contains special characters', () => {
-    // Arrange: Create a form control with a validation pattern
     const nameControl = new FormControl('', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
@@ -60,7 +59,6 @@ describe('FeedbackComponent', () => {
   });
 
   it('should mark name as valid when it has value', () => {
-    // Arrange: Create a form control with the same validation rule
     const nameControl = new FormControl('', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
@@ -73,7 +71,6 @@ describe('FeedbackComponent', () => {
   });
 
   it('should mark name as invalid when it has no value', () => {
-    // Arrange: Create a form control with required + pattern validators
     const nameControl = new FormControl('', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
@@ -86,7 +83,6 @@ describe('FeedbackComponent', () => {
   });
 
   it('should mark name as invalid when it only has one character', () => {
-    // Arrange: Create a form control with validation rules
     const nameControl = new FormControl('', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only alphanumeric and spaces
@@ -100,7 +96,6 @@ describe('FeedbackComponent', () => {
   });
 
   it('should mark name as valid when it has two characters', () => {
-    // Arrange: Create a form control with the same validation rules
     const nameControl = new FormControl('', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only alphanumeric and spaces
