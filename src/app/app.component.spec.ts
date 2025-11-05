@@ -26,9 +26,12 @@ describe('AppComponent', () => {
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const toolbarText = "Ohjelmistokehitysprosessin automatisointi -opintojakson harjoitusprojekti"
+    const toolbarText =
+      'Ohjelmistokehitysprosessin automatisointi -opintojakson harjoitusprojekti';
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.mat-toolbar span span')?.textContent).toContain(toolbarText);
+    expect(
+      compiled.querySelector('.mat-toolbar span span')?.textContent
+    ).toContain(toolbarText);
   });
 });

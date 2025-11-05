@@ -17,15 +17,15 @@ describe('FeedbackComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FeedbackComponent, BrowserAnimationsModule],
-      providers: [provideRouter([{ path: 'home', component: HomeComponent }]),
-      provideLocationMocks(),
+      providers: [
+        provideRouter([{ path: 'home', component: HomeComponent }]),
+        provideLocationMocks(),
       ],
       /*schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
         NO_ERRORS_SCHEMA
       ]*/
-    })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FeedbackComponent);
     component = fixture.componentInstance;
@@ -49,7 +49,7 @@ describe('FeedbackComponent', () => {
   it('should mark name as invalid when it contains special characters', () => {
     const nameControl = new FormControl('', [
       Validators.required,
-      Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
+      Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only allow alphanumeric and spaces
     ]);
 
     nameControl.setValue('John@Doe');
@@ -61,7 +61,7 @@ describe('FeedbackComponent', () => {
   it('should mark name as valid when it has value', () => {
     const nameControl = new FormControl('', [
       Validators.required,
-      Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
+      Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only allow alphanumeric and spaces
     ]);
 
     nameControl.setValue('John Doe');
@@ -73,7 +73,7 @@ describe('FeedbackComponent', () => {
   it('should mark name as invalid when it has no value', () => {
     const nameControl = new FormControl('', [
       Validators.required,
-      Validators.pattern(/^[a-zA-Z0-9 ]*$/) // Only allow alphanumeric and spaces
+      Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only allow alphanumeric and spaces
     ]);
 
     nameControl.setValue('');
@@ -86,7 +86,7 @@ describe('FeedbackComponent', () => {
     const nameControl = new FormControl('', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only alphanumeric and spaces
-      Validators.minLength(2)                // Must be at least 2 characters long
+      Validators.minLength(2), // Must be at least 2 characters long
     ]);
 
     nameControl.setValue('A');
@@ -99,7 +99,7 @@ describe('FeedbackComponent', () => {
     const nameControl = new FormControl('', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z0-9 ]*$/), // Only alphanumeric and spaces
-      Validators.minLength(2)                // Must be at least 2 characters
+      Validators.minLength(2), // Must be at least 2 characters
     ]);
 
     nameControl.setValue('Al');

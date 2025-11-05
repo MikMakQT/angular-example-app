@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -22,23 +22,38 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
   templateUrl: './feedback.component.html',
-  styleUrl: './feedback.component.css'
+  styleUrl: './feedback.component.css',
 })
-export class FeedbackComponent {
-  headerText: string = "Give feedback";
+export class FeedbackComponent implements OnInit {
+  headerText = 'Give feedback';
+  private readonly router = inject(Router);
 
   fbForm: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z ]*$')]),
-    description: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z ]*$')]),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z ]*$'),
+    ]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.pattern('^[a-zA-Z ]*$'),
+    ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    termsAndConditions: new FormControl('')
+    termsAndConditions: new FormControl(''),
   });
 
-  constructor(public router: Router) { }
+  constructor(/*public router: Router*/) {
+    //cheese and marble
+  }
 
   ngOnInit(): void {
+    console.log('FeedbackComponent initialized');
   }
 
   cancel() {
