@@ -1,6 +1,2 @@
 FROM nginx:1.23.3
-# ... inside your build stage ...
-RUN npm run build -- --output-path=./dist/angular-example
-RUN ls -lR /app/dist/angular-example # Check if the files are there
-# ...
-COPY ./dist/angular-example/ /usr/share/nginx/html
+COPY ./dist/angular-example-app/ /usr/share/nginx/html
