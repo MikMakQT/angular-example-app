@@ -62,9 +62,6 @@ jobs:
       - name: Lowercase the repo name
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
-      - name: GITHUBTOKEN
-        run: echo "${{ secrets.GITHUB_TOKEN }}"
-
       - name: Build and push container image to registry
         uses: docker/build-push-action@v6
         with:
