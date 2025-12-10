@@ -34,8 +34,8 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: webpack artifact
-        path: dist/angular-example-app/
-    - run: ls ./dist/angular-example-app/
+        path: dist/angular-example/
+    - run: ls ./dist/angular-example/
 
   build-docker:
     runs-on: ubuntu-latest
@@ -47,8 +47,8 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: webpack artifact
-          path: dist/angular-example-app/
-      - run: ls ./dist/angular-example-app/
+          path: dist/angular-example/
+      - run: ls ./dist/angular-example/
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
